@@ -1,0 +1,25 @@
+User12  password: annipeng
+Eth.coinbase: 0xd17f08773b79984b814e0922ed74048195ebfeda
+Key: 0x02b75772d86fab65645a05057ec6f0e8a57f7d96 Password: annipeng
+1000 ether transaction: 0xaf228fd46abc78d2e94ac0cf2e8fbdbd4eb5eee0829e75c1cd5be9de8682b06e
+
+----------ckeck balance: web3.fromWei(eth.getBalance(eth,coinbase),"ether")
+----------unlock account before arise a transaction: web3.personal.unlockAccount(web3.personal.listAccounts[0], "account5", 1000)
+----------arise a transaction: eth.sendTransaction({from:eth.coinbase, to:"0x02b75772d86fab65645a05057ec6f0e8a57f7d96", value:web3.toWei(1000, "ether")})
+
+----------To deploy smart contract:
+
+var contractTemplate = web3.eth.contract(JSON.parse(contractContent.contracts["simple.sol:Simple"].abi))
+
+var gasValue = eth.estimateGas({data:"0x"+contractContent.contracts["simple.sol:Simple"].bi
+n})
+
+var contractInst = contractTemplate.new({from: eth.accounts[1], data:"0x"+contractContent.contracts["simple.sol:Simple"].bin,gas:gasValue},function(e,contract){ if(typeof contract.address !== 'undefined'){console.log('Contract mined! address:'+ contract.address + 'transactionHash:'+contract.transactionHash);}});
+
+
+address:
+0x91b1ced6fe1ba2f915c0805a1af623b2aa8df26b
+transactionHash:
+0x7412c1bde4bbcf5eae66447cb8f4bfac4343ac9c067b885853e6bec65d778ec1
+
+INFO [02-06|17:26:05] Submitted contract creation              fullhash=0x7412c1bde4bbcf5eae66447cb8f4bfac4343ac9c067b885853e6bec65d778ec1 contract=0x91b1CED6fe1Ba2F915c0805a1Af623B2aA8dF26b
